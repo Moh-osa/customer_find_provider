@@ -47,6 +47,41 @@ CREATE TABLE public.ar_internal_metadata (
 
 
 --
+-- Name: customer_flooring_requests; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.customer_flooring_requests (
+    id bigint NOT NULL,
+    lat numeric(10,6),
+    lng numeric(10,6),
+    phone_number character varying(50),
+    material public.speciality_material,
+    square_meters integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: customer_flooring_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.customer_flooring_requests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: customer_flooring_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.customer_flooring_requests_id_seq OWNED BY public.customer_flooring_requests.id;
+
+
+--
 -- Name: provider_specialities; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -124,6 +159,13 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: customer_flooring_requests id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.customer_flooring_requests ALTER COLUMN id SET DEFAULT nextval('public.customer_flooring_requests_id_seq'::regclass);
+
+
+--
 -- Name: provider_specialities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -143,6 +185,14 @@ ALTER TABLE ONLY public.providers ALTER COLUMN id SET DEFAULT nextval('public.pr
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: customer_flooring_requests customer_flooring_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.customer_flooring_requests
+    ADD CONSTRAINT customer_flooring_requests_pkey PRIMARY KEY (id);
 
 
 --
@@ -194,6 +244,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210711142742'),
 ('20210711143811'),
 ('20210711144141'),
-('20210711144152');
+('20210711144152'),
+('20210711155900');
 
 
