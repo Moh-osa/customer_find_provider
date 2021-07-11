@@ -8,5 +8,6 @@ class Provider < ApplicationRecord
   }
   scope :within_operating_radius, lambda { |lat, lng|
     where('earth_box(ll_to_earth(?, ?), operating_radius) @> ll_to_earth(lat, lng)', lat, lng)
+      .where('earth_distance(ll_to_earth(?, ?), ll_to_earth(lat,lng)) <= operating_radius', lat, lng)
   }
 end
