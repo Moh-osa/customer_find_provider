@@ -7,7 +7,7 @@ class CustomerFlooringRequestsController < ApplicationController
     customer_request = CustomerFlooringRequest.new(customer_flooring_request_params)
     if customer_request.valid?
       customer_request.save!
-      render json: customer_request.matching_providers
+      render json: customer_request.matching_providers, except: %i[operating_radius created_at updated_at]
     else
       render json: { reason: customer_request.errors.full_messages }, status: :unprocessable_entity
     end
