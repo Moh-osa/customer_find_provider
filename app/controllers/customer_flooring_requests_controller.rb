@@ -7,6 +7,7 @@ class CustomerFlooringRequestsController < ApplicationController
     customer_request = CustomerFlooringRequest.new(customer_flooring_request_params)
     if customer_request.valid?
       customer_request.save!
+      render json: customer_request.matching_providers
     else
       render json: { reason: customer_request.errors.full_messages }, status: :unprocessable_entity
     end

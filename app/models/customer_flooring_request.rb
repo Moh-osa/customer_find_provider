@@ -12,4 +12,8 @@ class CustomerFlooringRequest < ApplicationRecord
   def self.valid_material?(query)
     materials.values.include? query
   end
+
+  def matching_providers
+    Provider.supports_category_and_material(ProviderSpeciality.categories[:flooring], material)
+  end
 end
