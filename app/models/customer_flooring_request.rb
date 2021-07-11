@@ -14,6 +14,8 @@ class CustomerFlooringRequest < ApplicationRecord
   end
 
   def matching_providers
-    Provider.supports_category_and_material(ProviderSpeciality.categories[:flooring], material)
+    Provider
+      .supports_category_and_material(ProviderSpeciality.categories[:flooring], material)
+      .within_operating_radius(lat, lng)
   end
 end
