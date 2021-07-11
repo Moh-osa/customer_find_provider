@@ -52,7 +52,7 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.provider_specialities (
     id bigint NOT NULL,
-    providers_id bigint,
+    provider_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     category public.speciality_category,
@@ -170,18 +170,18 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
--- Name: index_provider_specialities_on_providers_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_provider_specialities_on_provider_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_provider_specialities_on_providers_id ON public.provider_specialities USING btree (providers_id);
+CREATE INDEX index_provider_specialities_on_provider_id ON public.provider_specialities USING btree (provider_id);
 
 
 --
--- Name: provider_specialities fk_rails_0d83d24063; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: provider_specialities fk_rails_6d45982cb4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.provider_specialities
-    ADD CONSTRAINT fk_rails_0d83d24063 FOREIGN KEY (providers_id) REFERENCES public.providers(id);
+    ADD CONSTRAINT fk_rails_6d45982cb4 FOREIGN KEY (provider_id) REFERENCES public.providers(id);
 
 
 --
